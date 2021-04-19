@@ -1,5 +1,3 @@
-
-
 //import axios from 'axios'
 console.log("IN public directory")
 function makeOrder(obj)
@@ -61,7 +59,7 @@ if(document.getElementsByClassName('singleOrder'))
 {
 const id=document.getElementsByClassName('list-group-item')[0].id;
 console.log("id-",id)
-const btn=document.getElementsByClassName('btn')[1];
+const btn=document.getElementsByClassName('OrderNow')[0];
 console.log(btn)
 btn.addEventListener('click',(e)=>{
     const quantity=document.getElementById('quantity')
@@ -70,6 +68,7 @@ btn.addEventListener('click',(e)=>{
       console.log(phone,address)
     const item=btn.dataset.item
    // const user=btn.id
+   console.log(item)
     makeOrder({item:JSON.parse(item),phone:phone,address:address,quantity:quantity})
 })
 }

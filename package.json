@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js -e js,html,css,ejs"
+    "start": "nodemon server.js -e js,html,css,ejs",
+    "dev": "env-cmd -f config/dev.env nodemon ./src/index.js -e js,json"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "bcrypt": "^5.0.0",
     "connect-mongo": "^3.2.0",
     "ejs": "^3.1.5",
+    "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "express-ejs": "^2.0.0",
     "express-ejs-layouts": "^2.5.0",

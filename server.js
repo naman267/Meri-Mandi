@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set('views',path.join(__dirname,'/resources/views'))
 app.set('view engine','ejs')
 
-const url="mongodb://127.0.0.1:27017/mandi";
+const url=process.env.MONGO_URL;
 mongoose.connect(url,{useNewUrlParser:true,useCreateIndex:true,useUnifiedTopology:true,useFindAndModify:false})
 const connection=mongoose.connection
 

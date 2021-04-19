@@ -57,7 +57,7 @@ function authController(){
         //Validation request
 
         const {password,email}=req.body
-        if(!email || !password)
+        if((!email) || (!password))
         {
            
          return res.redirect('/login')

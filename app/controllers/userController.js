@@ -83,7 +83,7 @@ function userController()
        Order.find({customerId:req.user._id}).populate('FarmerId').exec((err,order)=>{
 
         if(!err)
-        {
+        {console.log("myOrder",order)
           return res.render('userOrder',{orders:order})
         }
         else{
