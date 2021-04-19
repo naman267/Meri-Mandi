@@ -1,7 +1,7 @@
 const express=require('express')
 const app=express()
 const path=require('path')
-app.use(express.static('public'))
+
 const ejs=require('ejs')
 const session=require('express-session')
 const mongoose=require('mongoose')
@@ -12,7 +12,7 @@ const farmController=require('./app/controllers/farmController')
 const userController=require('./app/controllers/userController')
 ////////////////////////////////////
 var multer = require('multer');
- 
+app.use(express.static('public')) 
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads')
