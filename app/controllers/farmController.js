@@ -13,7 +13,7 @@ function farmController()
         postUpload(req,res)
         {   
            const {name,price,desc}=req.body;
-               console.log(path.join(__dirname + '../../../uploads/' ))
+               console.log(path.join("path-",__dirname + '../../../uploads/' ))
            const item=new Item({
                FarmerId:req.user._id,
                name,
@@ -26,7 +26,7 @@ function farmController()
            })
            console.log("here-------")
            item.save().then(result=>{
-               console.log("Ypur vegetable uploaded")
+               console.log("Your vegetable uploaded")
                return res.redirect('/farmer')
            }).catch(e=>{
                console.log(e)

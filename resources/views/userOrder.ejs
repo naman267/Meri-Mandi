@@ -79,9 +79,13 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
                         </br>Order Deatils-
                             <% for(orde in order.items){%>
                                <p style="color:red">Vegeatble Name- <%= order.items[orde].name %></p>
+                               <p style="color:red">Quantity Ordered(Grams)- <%= order.items[orde].quantity %></p>
                                 <p style="color:red">
-                                  Vegetable Price-<%= order.items[orde].price %>  
-                                </p>                        
+                                  Vegetable Price(Per Kg)-<%= order.items[orde].price %>  
+                                </p>   
+                                <p style="color:red">
+                                  Total Price-<%= (order.items[orde].price*order.items[orde].quantity)/1000 %>  
+                                </p>                      
                             <%}%> 
 
                         </td>

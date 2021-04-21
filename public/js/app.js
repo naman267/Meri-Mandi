@@ -66,7 +66,7 @@ const btn=document.getElementsByClassName('OrderNow')[0];
 if(btn)
 {
     btn.addEventListener('click',(e)=>{
-        const quantity=document.getElementById('quantity')
+        const quantity=document.getElementById('quantity').value
           const phone=document.getElementById('phone').value;
           const address=document.getElementById('address').value;
           console.log(phone,address)
@@ -76,6 +76,7 @@ if(btn)
        item=JSON.parse(item)
        console.log("item-",item)
        const id=item._id;
+       console.log("quantity",quantity)
         makeOrder({id:id,phone:phone,address:address,quantity:quantity})
     })
 

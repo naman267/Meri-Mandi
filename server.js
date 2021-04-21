@@ -12,7 +12,7 @@ const farmController=require('./app/controllers/farmController')
 const userController=require('./app/controllers/userController')
 ////////////////////////////////////
 var multer = require('multer');
-const upload=multer()
+//const upload=multer()
 app.use(express.static('public')) 
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -23,7 +23,7 @@ var storage = multer.diskStorage({
     }
 });
  
-var uploadd = multer({ storage: storage });
+var upload = multer({ storage: storage });
 //////////////////////////////
 //const expressLayouts=require('express-ejs-layouts')
 let bodyParser = require('body-parser')
@@ -94,7 +94,7 @@ app.post('/user/order',userController().order)
 app.get('/farmer/orders',farmController().showorders)
 app.get('/user/orders',userController().myOrder)
 app.post('/farmer/updateStatus',farmController().changeStatus)
-app.post('/farmer/vegetableStatus',uploadd.none(),farmController().vegetableStatus)
+app.post('/farmer/vegetableStatus',farmController().vegetableStatus)
 app.listen(3000,()=>{
     console.log('connected')
 })

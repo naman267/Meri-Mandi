@@ -44,6 +44,7 @@ function userController()
         const {phone,address,id,quantity}=req.body;
         //console.log("data-",phone,address,FarmerId,Item_id)
         //console.log("item",item)
+        console.log("quantity-",quantity)
         Item.find({_id:id}).populate('FarmerId').exec((err,items)=>{
           if(!err)
           {
