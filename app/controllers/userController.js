@@ -35,7 +35,7 @@ function userController()
           
           })
           
-          //console.log("vegetable",vegetable)
+         
           
 
       },
