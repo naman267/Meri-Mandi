@@ -41,10 +41,10 @@ function userController()
       },
       async order(req,res)
       {
-        const {phone,address,item,quantity}=req.body;
+        const {phone,address,id,quantity}=req.body;
         //console.log("data-",phone,address,FarmerId,Item_id)
-        console.log("item",item)
-        Item.find({_id:item._id}).populate('FarmerId').exec((err,items)=>{
+        //console.log("item",item)
+        Item.find({_id:id}).populate('FarmerId').exec((err,items)=>{
           if(!err)
           {
           console.log("items",items)

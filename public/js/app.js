@@ -42,10 +42,12 @@ function changeVegetableStatus(thiss)
 const status=thiss.value
 const item=JSON.parse(thiss.id)
 
+
 const obj={
-    item:item,
+    _id:item._id,
     status:status
 }
+console.log(obj)
 axios.post('/farmer/vegetableStatus',obj).then(res=>{
     console.log(res);
     window.location='/farmer'
@@ -60,15 +62,23 @@ if(document.getElementsByClassName('singleOrder'))
 const id=document.getElementsByClassName('list-group-item')[0].id;
 console.log("id-",id)
 const btn=document.getElementsByClassName('OrderNow')[0];
-console.log(btn)
-btn.addEventListener('click',(e)=>{
-    const quantity=document.getElementById('quantity')
-      const phone=document.getElementById('phone').value;
-      const address=document.getElementById('address').value;
-      console.log(phone,address)
-    const item=btn.dataset.item
-   // const user=btn.id
-   console.log(item)
-    makeOrder({item:JSON.parse(item),phone:phone,address:address,quantity:quantity})
-})
+//console.log(btn)
+if(btn)
+{
+    btn.addEventListener('click',(e)=>{
+        const quantity=document.getElementById('quantity')
+          const phone=document.getElementById('phone').value;
+          const address=document.getElementById('address').value;
+          console.log(phone,address)
+        var item=btn.dataset.item
+       // const user=btn.id
+       
+       item=JSON.parse(item)
+       console.log("item-",item)
+       const id=item._id;
+        makeOrder({id:id,phone:phone,address:address,quantity:quantity})
+    })
+
+}
+
 }

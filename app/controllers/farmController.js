@@ -82,10 +82,10 @@ function farmController()
         },
         vegetableStatus(req,res)
         {
-            let {status,item}=req.body;
+            let {status,_id}=req.body;
             //order.status=status;
              console.log("status updated")
-            Item.updateOne({_id:item._id},{status:status},(err,data)=>{
+            Item.updateOne({_id:_id},{status:status},(err,data)=>{
                 if(err)
                 {console.log("error",e)
                   return   res.redirect('/farmer/orders')

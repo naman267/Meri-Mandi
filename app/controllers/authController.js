@@ -62,7 +62,7 @@ function authController(){
            
          return res.redirect('/login')
         }
-
+        console.log("login--5",req.body)
         passport.authenticate('local',(err,user,info)=>{
             if(err)
             {

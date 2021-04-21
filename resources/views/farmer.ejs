@@ -14,7 +14,8 @@
 
 body {
     background-color: #eee;
-    font-family: 'Calibri', sans-serif !important
+    font-family: 'Calibri', sans-serif !important;
+    
 }
 
 .mt-100 {
@@ -48,6 +49,20 @@ body {
 .card .card-body {
     padding: 30px;
     background-color: transparent
+}
+.farmerpage{
+  display:flex;
+  justify-content:space-between;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  /* background: #535c68; */
+  /* background-color: #FFE53B; */
+      /* background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%); */
+      background-color: #A9C9FF;
+background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
+
+
 }
 
 .btn-primary,
@@ -96,7 +111,8 @@ body {
     <% if(items.length!=0){ %>
     <% items.forEach(item=>{ %>
     </br>
-    <div class="shadow-lg p-3 mb-5 bg-white rounded border border-dark card mx-auto " style="width: 18rem; margin-top:60px;">
+    <div class="farmerpage">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded border border-dark card  " style="width: 18rem; margin-top:60px; margin-left:30%;">
       <% if(item.status==='Available') { %>
       <h4 style="background-color: green;"class=" text-white text-center"><%=item.status%>  </h4>
    
@@ -106,8 +122,10 @@ body {
       <img class="rounded border border-dark" src="data:image/<%=item.img.contentType%>;base64,
       <%=item.img.data.toString('base64')%>" class="card-img-top" alt="...">
         <div class="card-body">
-
-          <h5 class="card-title"><%= item.name %></h5>
+         <div style="text-align:center">
+          <h3 class="card-title"><%= item.name %></h3>
+         </div>
+          
           <h6>Description-</h5>
           <p class="mx-auto card-text"><%=item.desc%></p>
         </div>
@@ -115,7 +133,7 @@ body {
           <li class="mx-auto list-group-item">Name-<%=user.name%></li>
           <li class="mx-auto list-group-item">Adderess- <%=user.address%></li>
           <li class="mx-auto list-group-item">Phone-<%=user.phone%></li>
-          <li class="mx-auto list-group-item">Price Per Kg<%=item.price%></li>
+          <li class="mx-auto list-group-item">Price Per Kg-<%=item.price%></li>
         </ul>
         <div class="card-body mx-auto">
           <label for="status">Change Status</label>
@@ -126,6 +144,10 @@ body {
                         </select>
     
         </div>
+      </div>
+      <div style="margin-top:13%; margin-right:none; margin-left:none; margin-right:15%;">
+        <img height="350px" src="/img/farmerpage.jpg"/>
+      </div>
       </div>
     </br>
       <%})%>
