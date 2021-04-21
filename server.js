@@ -1,15 +1,15 @@
-const express=require('express')
-const app=express()
-const path=require('path')
+const express = require('express')
+const app = express()
+const path = require('path')
 
-const ejs=require('ejs')
-const session=require('express-session')
-const mongoose=require('mongoose')
-const Mongodbstore=require('connect-mongo')(session)
-const passport=require('passport')
-const authController=require('./app/controllers/authController')
-const farmController=require('./app/controllers/farmController')
-const userController=require('./app/controllers/userController')
+const ejs = require('ejs')
+const session = require('express-session')
+const mongoose = require('mongoose')
+const Mongodbstore = require('connect-mongo')(session)
+const passport = require('passport')
+const authController = require('./app/controllers/authController')
+const farmController = require('./app/controllers/farmController')
+const userController = require('./app/controllers/userController')
 ////////////////////////////////////
 var multer = require('multer');
 //const upload=multer()
@@ -28,57 +28,69 @@ var upload = multer({ storage: storage });
 //const expressLayouts=require('express-ejs-layouts')
 let bodyParser = require('body-parser')
 app.use(express.json())
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
+app.use(bodyParser.json())
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+    
+  })
+)
 //app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(express.json({limit: '50mb'}));
 //template engine
 
 //app.use(expressLayouts)
-app.set('views',path.join(__dirname,'/resources/views'))
-app.set('view engine','ejs')
+app.set('views', path.join(__dirname, '/resources/views'))
+app.set('view engine', 'ejs')
 
-const url=process.env.MONGO_URL;
-mongoose.connect(url,{useNewUrlParser:true,useCreateIndex:true,useUnifiedTopology:true,useFindAndModify:false})
-const connection=mongoose.connection
-
-connection.once('open',()=>{
-    console.log('Established')
-}).catch((e)=>{
-    console.log('Not')
+const url = process.env.MONGO_URL
+mongoose.connect(url, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
 })
+const connection = mongoose.connection
 
+connection
+  .once('open', () => {
+    console.log('Established')
+  })
+  .catch((e) => {
+    console.log('Not')
+  })
 
-let mongoStore=new Mongodbstore({
-    mongooseConnection:connection,
-    collection:'sessions'
+let mongoStore = new Mongodbstore({
+  mongooseConnection: connection,
+  collection: 'sessions'
 })
 //const eventEmitter=new Emitter()
 //app.set('eventEmitter',eventEmitter)
 //session
 //app.use(flash())
-app.use(session({
-    secret:'thisismysecret',
-    resave:false,
-    store:mongoStore,
-    saveUninitialized:false,
-    cookie:{maxAge:1000*60*60*24}
-}))
-const passportInit=require('./app/config/passport')
+app.use(
+  session({
+    secret: 'thisismysecret',
+    resave: false,
+    store: mongoStore,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }
+  })
+)
+const passportInit = require('./app/config/passport')
 passportInit(passport)
 app.use(passport.initialize())
 app.use(passport.session())
 //global middleware to use data in frontend
-app.use((req,res,next)=>{
-    res.locals.session=req.session;
-    res.locals.user=req.user;
-    next()
+app.use((req, res, next) => {
+  res.locals.session = req.session
+  res.locals.user = req.user
+  next()
 })
 
-
 // All Routes
-app.get('/',(req,res)=>{
-    res.redirect('/login')
+app.get('/', (req, res) => {
+  res.redirect('/login')
 })
 app.get('/register',authController().register)
 app.post('/register',authController().postRegister)
@@ -98,5 +110,3 @@ app.post('/farmer/vegetableStatus',farmController().vegetableStatus)
 app.listen(3000,()=>{
     console.log('connected')
 })
-
-

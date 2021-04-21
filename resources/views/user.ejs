@@ -9,6 +9,23 @@
       background-color: #A9C9FF;
 background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
     }
+
+    .cards{
+      padding: 25px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2em;
+    }
+
+    .veg-card{
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-clip: border-box;
+      align-self: center;
+      justify-self: center;
+    }
     </style>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -17,15 +34,9 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
   </head>
   <body >
 <!------------------NAV BAR-->
-<nav style="position: fixed; width:100%;z-index: 4;"class="navbar navbar-expand-lg navbar-light bg-dark" id="<%=JSON.stringify(user)%>">
-  <div class="container-fluid">
-   
-
-    <div style="margin-left:1150px;" class="collapse navbar-collapse" id="navbarSupportedContent">
-     
-     
-         
-        <ul class="navbar-nav  mb-2 mb-lg-0">
+<nav style="position: fixed; width:100%;z-index: 4; padding-left: 70vw;"class="navbar navbar-expand-lg navbar-light bg-dark" id="<%=JSON.stringify(user)%>">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav  mb-2 mb-lg-0">
           <li style="width:150px;"class="mt-2 text-white nav-item">
             Welcome-<%=user.name%>
           </li>
@@ -36,67 +47,63 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
           <li class="nav-item">
             <a class="text-white nav-link" href="/user/orders">Orders</a>
           </li>
-      
-         
-         
         </ul>
         <form action="/logout" method="POST">
           <button class="btn btn-outline-success" type="submit">Logout</button>
           </form>
-    </div>
   </div>
+ 
 </nav>
 <!---------NAV BAR END-->
-  <h1 style="position:fixed;margin-left:20px; margin-top:300px;"> Available Vegetables</h1>
+  <h1 style="padding-top: 10vh; text-align:center;"> Available Vegetables</h1>
     <!---------------CARD-->
-    <% items.forEach(item=>{ %>
-    </br>
-    <div class="shadow-lg p-3 mb-5 bg-white rounded border border-dark card mx-auto " style="width: 18rem; margin-top:60px;">
-      <% if(item.status==='Available') { %>
-        <h4 style="background-color: green;"class=" text-white text-center"><%=item.status%>  </h4>
-        <img class="rounded border border-dark" src="data:image/<%=item.img.contentType%>;base64,
-        <%=item.img.data.toString('base64')%>" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title"><%=item.name%></h5>
-          <h6>Description-</h5>
-          <p class="mx-auto card-text"><%=item.desc%></p>
+    <div class="cards">
+      <%items.forEach(item=>{ %>
+        <div class="veg-card shadow-lg p-3 bg-white rounded border border-dark" style="width: 280px;">
+          <% if(item.status==='Available') { %>
+            <h4 style="background-color: green;"class=" text-white text-center"><%=item.status%>  </h4>
+            <img class="rounded border border-dark" src="data:image/<%=item.img.contentType%>;base64,
+            <%=item.img.data.toString('base64')%>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%=item.name%></h5>
+              <h6>Description-</h5>
+              <p class="mx-auto card-text"><%=item.desc%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="mx-auto list-group-item">Name-<%=item.FarmerId.name%></li>
+              <li class="mx-auto list-group-item">Adderess-<%=item.FarmerId.address%></li>
+              <li class="mx-auto list-group-item">Phone-<%=item.FarmerId.phone%></li>
+              <li class="mx-auto list-group-item">Price per kg-<%=item.price%></li>
+            </ul>
+            <div class="card-body mx-auto">
+              <form action="/view/<%= item._id %>" method="POST">
+              <button  type="submit" mx-auto" style="background-color: darkgray;">View This</button>
+              </form>
+            </div>
+          <%}else {%>
+            <h4 style="background-color: gray;" class="text-white text-center"><%=item.status%>  </h4>
+            <img class="rounded border border-dark" src="data:image/<%=item.img.contentType%>;base64,
+            <%=item.img.data.toString('base64')%>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%=item.name%></h5>
+              <h6>Description-</h5>
+              <p class="mx-auto card-text"><%=item.desc%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="mx-auto list-group-item">Name-<%=item.FarmerId.name%></li>
+              <li class="mx-auto list-group-item">Adderess-<%=item.FarmerId.address%></li>
+              <li class="mx-auto list-group-item">Phone-<%=item.FarmerId.phone%></li>
+              <li class="mx-auto list-group-item">Price per kg-<%=item.price%></li>
+            </ul>
+            <div class="card-body mx-auto">
+              <form action="/view/<%= item._id %>" method="POST">
+              <button  type="submit" disabled="true" mx-auto" style="background-color: darkgray;">View This</button>
+              </form>
+            </div>
+          <%}%>  
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="mx-auto list-group-item">Name-<%=item.FarmerId.name%></li>
-          <li class="mx-auto list-group-item">Adderess-<%=item.FarmerId.address%></li>
-          <li class="mx-auto list-group-item">Phone-<%=item.FarmerId.phone%></li>
-          <li class="mx-auto list-group-item">Price per kg-<%=item.price%></li>
-        </ul>
-        <div class="card-body mx-auto">
-          <form action="/view/<%= item._id %>" method="POST">
-          <button  type="submit" mx-auto" style="background-color: darkgray;">View This</button>
-          </form>
-        </div>
-      <%}else {%>
-        <h4 style="background-color: gray;" class="text-white text-center"><%=item.status%>  </h4>
-        <img class="rounded border border-dark" src="data:image/<%=item.img.contentType%>;base64,
-        <%=item.img.data.toString('base64')%>" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title"><%=item.name%></h5>
-          <h6>Description-</h5>
-          <p class="mx-auto card-text"><%=item.desc%></p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="mx-auto list-group-item">Name-<%=item.FarmerId.name%></li>
-          <li class="mx-auto list-group-item">Adderess-<%=item.FarmerId.address%></li>
-          <li class="mx-auto list-group-item">Phone-<%=item.FarmerId.phone%></li>
-          <li class="mx-auto list-group-item">Price per kg-<%=item.price%></li>
-        </ul>
-        <div class="card-body mx-auto">
-          <form action="/view/<%= item._id %>" method="POST">
-          <button  type="submit" disabled="true" mx-auto" style="background-color: darkgray;">View This</button>
-          </form>
-        </div>
-        <%}%>  
-        
-      </div>
-    </br>
       <%})%>
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
