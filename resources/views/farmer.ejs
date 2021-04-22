@@ -1,28 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
 
     <title>Hello, world!</title>
     <style>
       @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
 
-body {
-    background-color: #eee;
-    font-family: 'Calibri', sans-serif !important;
-    
-}
+      body {
+        background-color: #eee;
+        font-family: 'Calibri', sans-serif !important;
+      }
 
-.mt-100 {
-    margin-top: 100px
-}
+      .mt-100 {
+        margin-top: 100px;
+      }
 
-.card {
+      /* .card {
     margin-bottom: 30px;
     border: 0;
     -webkit-transition: all .3s ease;
@@ -31,102 +35,133 @@ body {
     border-radius: 8px;
     -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
     box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05)
-}
+} */
 
-.card .card-header {
-    background-color: #fff;
-    border-bottom: none;
-    padding: 24px;
-    border-bottom: 1px solid #f6f7fb;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px
-}
+      .veg-card {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-clip: border-box;
+        align-self: center;
+        justify-self: center;
+      }
 
-.card-header:first-child {
-    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0
-}
+      .veg-card .card-header {
+        background-color: #fff;
+        border-bottom: none;
+        padding: 24px;
+        border-bottom: 1px solid #f6f7fb;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
 
-.card .card-body {
-    padding: 30px;
-    background-color: transparent
-}
-.farmerpage{
-  display:flex;
-  justify-content:space-between;
-}
-body {
-  font-family: 'Montserrat', sans-serif;
-  /* background: #535c68; */
-  /* background-color: #FFE53B; */
-      /* background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%); */
-      background-color: #A9C9FF;
-background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
+      .card-header:first-child {
+        border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+      }
 
+      .veg-card .card-body {
+        padding: 10px;
+        background-color: transparent;
+      }
+      .farmerpage {
+        /* display:flex;
+  justify-content:space-between; */
+        padding: 25px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2em;
+      }
+      body {
+        font-family: 'Montserrat', sans-serif;
+        /* background: #535c68; */
+        /* background-color: #FFE53B; */
+        /* background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%); */
+        background-color: #a9c9ff;
+        background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
+      }
 
-}
-
-.btn-primary,
-.btn-primary.disabled,
-.btn-primary:disabled {
-    background-color: #4466f2 !important;
-    border-color: #4466f2 !important
-}
+      .btn-primary,
+      .btn-primary.disabled,
+      .btn-primary:disabled {
+        background-color: #4466f2 !important;
+        border-color: #4466f2 !important;
+      }
     </style>
   </head>
-  <body >
-<!------------------NAV BAR-->
-<nav style="position: fixed; width:100%;z-index: 4; top:0px;"class="navbar navbar-expand-lg navbar-light bg-dark" id="<%=JSON.stringify(user)%>">
-    <div class="container-fluid">
-     
-      <div style="margin-left:1050px;" class="collapse navbar-collapse" id="navbarSupportedContent">
-       
-       
-           
-          <ul class="navbar-nav  mb-2 mb-lg-0">
-            <li style="width:150px;"class="mt-2 text-white nav-item">
+  <body>
+    <!------------------NAV BAR-->
+    <nav
+      style="position: fixed; width: 100%; z-index: 4"
+      class="navbar navbar-expand-lg navbar-light bg-dark"
+      id="<%=JSON.stringify(user)%>"
+    >
+      <div class="container-fluid">
+        <div
+          style="margin-left: 70%"
+          class="collapse navbar-collapse"
+          id="navbarSupportedContent"
+        >
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li style="width: 150px" class="mt-2 text-white nav-item">
               Welcome-<%=user.name%>
             </li>
             <li class="nav-item">
               <a class="text-white nav-link" href="/farmer">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="/farmer/upload">Upload</a>
+              <a
+                class="nav-link active text-white"
+                aria-current="page"
+                href="/farmer/upload"
+                >Upload</a
+              >
             </li>
             <li class="nav-item">
               <a class="text-white nav-link" href="/farmer/orders">Orders</a>
             </li>
-        
-           
-           
           </ul>
           <form action="/logout" method="POST">
-            <button class="btn btn-outline-success" type="submit">Logout</button>
-            </form>
+            <button class="btn btn-outline-success" type="submit">
+              Logout
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
-  </nav>
-<!---------NAV BAR END-->
-  <h1 style="position:fixed;margin-left:60px; margin-top:300px;"> My Vegetables</h1>
+    </nav>
+    <!---------NAV BAR END-->
+    <h1 style="padding-top: 10vh; text-align: center">My Vegetables</h1>
     <!---------------CARD-->
     <% if(items.length!=0){ %>
-    <% items.forEach(item=>{ %>
-    </br>
     <div class="farmerpage">
-    <div class="shadow-lg p-3 mb-5 bg-white rounded border border-dark card  " style="width: 18rem; margin-top:60px; margin-left:30%;">
-      <% if(item.status==='Available') { %>
-      <h4 style="background-color: green;"class=" text-white text-center"><%=item.status%>  </h4>
-   
-    <%}else {%>
-      <h4 style="background-color: gray;" class="text-white text-center"><%=item.status%>  </h4>
-      <%}%>
-      <img class="rounded border border-dark" src="data:image/<%=item.img.contentType%>;base64,
-      <%=item.img.data.toString('base64')%>" class="card-img-top" alt="...">
+      <% items.forEach(item=>{ %>
+      <div
+        class="veg-card shadow-lg p-3 bg-white rounded border border-dark"
+        style="width: 280px"
+      >
+        <% if(item.status==='Available') { %>
+        <h4 style="background-color: green" class="text-white text-center">
+          <%=item.status%>
+        </h4>
+        <%}else {%>
+        <h4 style="background-color: gray" class="text-white text-center">
+          <%=item.status%>
+        </h4>
+        <%}%>
+        <img
+          width="250px"
+          height="200px"
+          class="rounded border border-dark"
+          src="data:image/<%=item.img.contentType%>;base64,
+          <%=item.img.data.toString('base64')%>"
+          class="card-img-top"
+          alt="..."
+        />
         <div class="card-body">
-         <div style="text-align:center">
-          <h3 class="card-title"><%= item.name %></h3>
-         </div>
-          
-          <h6>Description-</h5>
+          <div style="text-align: center">
+            <h3 class="card-title"><%= item.name %></h3>
+          </div>
+          <h6>Description-</h6>
           <p class="mx-auto card-text"><%=item.desc%></p>
         </div>
         <ul class="list-group list-group-flush">
@@ -137,47 +172,62 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
         </ul>
         <div class="card-body mx-auto">
           <label for="status">Change Status</label>
-                            <select id="<%=JSON.stringify(item)%>" onchange="changeVegetableStatus(this)">
-                            <option  value="<%=item.status%>"><%=item.status%></option>
-                            <option value="Available">Available</option>
-                            <option value="Out Of Stock">Out Of Stock</option>
-                        </select>
-    
+          <select
+            id="<%=JSON.stringify(item)%>"
+            onchange="changeVegetableStatus(this)"
+          >
+            <option value="<%=item.status%>"><%=item.status%></option>
+            <option value="Available">Available</option>
+            <option value="Out Of Stock">Out Of Stock</option>
+          </select>
         </div>
       </div>
-      <div style="margin-top:13%; margin-right:none; margin-left:none; margin-right:15%;">
-        <img height="350px" src="/img/farmerpage.jpg"/>
-      </div>
-      </div>
-    </br>
+      <!-- <div style="margin-top:13%; margin-right:none; margin-left:none; margin-right:15%;">
+            <img height="350px" src="/img/farmerpage.jpg"/>
+          </div> -->
       <%})%>
-  
-  <%}else{%>
+    </div>
+
+    <%}else{%>
     <div class="container-fluid mt-100">
       <div class="row">
-          <div class="col-md-12">
-              <div class="card">
-                  <div class="card-header">
-                      
-                  </div>
-                  <div class="card-body cart">
-                      <div class="col-sm-12 empty-cart-cls text-center"> <img src="https://i.imgur.com/dCdflKN.png" width="130" height="130" class="img-fluid mb-4 mr-3">
-                          <h3><strong>You Have NOT UPLOADED ANY VEGETABLE</strong></h3>
-                          <h4>UPLOAD SOMETHING TO GET ORDERS:)</h4> <a href="/farmer/upload" class="btn btn-primary cart-btn-transform m-3" data-abc="true">Start Uploading</a>
-                      </div>
-                  </div>
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header"></div>
+            <div class="card-body cart">
+              <div class="col-sm-12 empty-cart-cls text-center">
+                <img
+                  src="https://i.imgur.com/dCdflKN.png"
+                  width="130"
+                  height="130"
+                  class="img-fluid mb-4 mr-3"
+                />
+                <h3><strong>You Have NOT UPLOADED ANY VEGETABLE</strong></h3>
+                <h4>UPLOAD SOMETHING TO GET ORDERS:)</h4>
+                <a
+                  href="/farmer/upload"
+                  class="btn btn-primary cart-btn-transform m-3"
+                  data-abc="true"
+                  >Start Uploading</a
+                >
               </div>
+            </div>
           </div>
+        </div>
       </div>
-  </div>
+    </div>
 
     <%}%>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-   <script src="/js/app.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/app.js"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!--
