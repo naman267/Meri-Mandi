@@ -62,7 +62,7 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
         <div class="veg-card shadow-lg p-3 bg-white rounded border border-dark" style="width: 280px;">
           <% if(item.status==='Available') { %>
             <h4 style="background-color: green;"class=" text-white text-center"><%=item.status%>  </h4>
-            <img class="rounded border border-dark" src="data:image/<%=item.img.contentType%>;base64,
+            <img height="200px" width="250px" class="rounded border border-dark" src="data:image/<%=item.img.contentType%>;base64,
             <%=item.img.data.toString('base64')%>" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title"><%=item.name%></h5>
