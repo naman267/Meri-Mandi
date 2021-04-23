@@ -18,6 +18,8 @@
       @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
 
       body {
+        width: 100vw;
+        height: 100vh;
         background-color: #eee;
         font-family: 'Calibri', sans-serif !important;
       }
@@ -27,15 +29,15 @@
       }
 
       /* .card {
-    margin-bottom: 30px;
-    border: 0;
-    -webkit-transition: all .3s ease;
-    transition: all .3s ease;
-    letter-spacing: .5px;
-    border-radius: 8px;
-    -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
-    box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05)
-} */
+          margin-bottom: 30px;
+          border: 0;
+          -webkit-transition: all .3s ease;
+          transition: all .3s ease;
+          letter-spacing: .5px;
+          border-radius: 8px;
+          -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+          box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05)
+      } */
 
       .veg-card {
         display: flex;
@@ -45,6 +47,7 @@
         background-clip: border-box;
         align-self: center;
         justify-self: center;
+        background-color: #e3e3e3;
       }
 
       .veg-card .card-header {
@@ -66,7 +69,7 @@
       }
       .farmerpage {
         /* display:flex;
-  justify-content:space-between; */
+        justify-content:space-between; */
         padding: 25px;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -77,8 +80,25 @@
         /* background: #535c68; */
         /* background-color: #FFE53B; */
         /* background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%); */
-        background-color: #a9c9ff;
-        background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
+        background-image: linear-gradient(
+          to right top,
+          #cdba37,
+          #bbbd2a,
+          #a7c01e,
+          #8ec319,
+          #70c61c,
+          #5bcb3a,
+          #3fd051,
+          #00d467,
+          #00db8a,
+          #00e1a8,
+          #00e7c3,
+          #25ebda
+        );
+      }
+
+      .list-group-item {
+        background: none;
       }
 
       .btn-primary,
@@ -136,7 +156,7 @@
     <div class="farmerpage">
       <% items.forEach(item=>{ %>
       <div
-        class="veg-card shadow-lg p-3 bg-white rounded border border-dark"
+        class="veg-card shadow-lg p-3 rounded border border-dark"
         style="width: 280px"
       >
         <% if(item.status==='Available') { %>
@@ -170,15 +190,21 @@
           <li class="mx-auto list-group-item">Phone-<%=user.phone%></li>
           <li class="mx-auto list-group-item">Price Per Kg-<%=item.price%></li>
         </ul>
-        <div class="card-body mx-auto">
+        <div
+          class="card-body mx-auto"
+          style="margin-top: 8px; border-top: 2px solid #222"
+        >
           <label for="status">Change Status</label>
           <select
             id="<%=JSON.stringify(item)%>"
             onchange="changeVegetableStatus(this)"
           >
             <option value="<%=item.status%>"><%=item.status%></option>
-            <option value="Available">Available</option>
+            <% if(item.status === "Available") {%>
             <option value="Out Of Stock">Out Of Stock</option>
+            <%}else{%>
+            <option value="Available">Available</option>
+            <%}%>
           </select>
         </div>
       </div>
@@ -192,7 +218,7 @@
     <div class="container-fluid mt-100">
       <div class="row">
         <div class="col-md-12">
-          <div class="card">
+          <div class="card" style="background-color: #eee">
             <div class="card-header"></div>
             <div class="card-body cart">
               <div class="col-sm-12 empty-cart-cls text-center">

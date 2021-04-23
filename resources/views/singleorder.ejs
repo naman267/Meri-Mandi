@@ -11,8 +11,7 @@
     body{
       width: 100vw;
       height: 100vh;
-      background-color: #A9C9FF;
-background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
+      background-image: linear-gradient(to right top, #cdba37, #bbbd2a, #a7c01e, #8ec319, #70c61c, #5bcb3a, #3fd051, #00d467, #00db8a, #00e1a8, #00e7c3, #25ebda);
     }
     .veg-card {
         display: flex;
@@ -23,6 +22,10 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
         background-clip: border-box;
         align-self: center;
         justify-self: center;
+        background-color: #e3e3e3;
+      }
+      .list-group-item{
+        background: none;
       }
   </style>
     <title>Hello, world!</title>
@@ -99,12 +102,12 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
     <!---------------CARD-->
     
     </br>
-    <div class="veg-card shadow-lg p-3 bg-white rounded border border-dark mx-auto" style="width: 90%; height: 65%">
+    <div class="veg-card shadow-lg p-3 rounded border border-dark mx-auto" style="width: 70%; height: 65%">
         <!-- <img class="rounded border border-dark"src="/o.jpg" class="card-img-top" alt="..."> -->
-        <div style="display: flex;flex-direction: column;align-items: center;justify-content: space-evenly;">
+        <div style="display: flex;flex-direction: column;justify-content: space-evenly;">
           <img width="250px" height="200px" class="rounded border border-dark" src="data:image/<%=item.img.contentType%>;base64,
           <%=item.img.data.toString('base64')%>" class="card-img-top" alt="...">
-          <div class="card-body">
+          <div class="card-body" style="justify-self: left; padding: 16px 0;">
             <h5 class="card-title"><%=item.name%></h5>
             <h6>Description-</h6>
             <p class="mx-auto card-text"><%=item.desc%></p>
@@ -113,7 +116,7 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
 
         <ul class="list-group list-group-flush">
           <li id="<%=item.FarmerId %>"class="mx-auto singleOrder list-group-item">Name-<%=item.FarmerId.name%></li>
-          <li class="mx-auto list-group-item">Adderess-<%=item.FarmerId.address%></li>
+          <li class="mx-auto list-group-item">Address-<%=item.FarmerId.address%></li>
           <li class="mx-auto list-group-item">Phone-<%=item.FarmerId.phone%></li>
           <li class="mx-auto list-group-item">Price per kg-<%=item.price%></li>
         </ul>

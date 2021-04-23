@@ -53,10 +53,14 @@
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
     /* background: #535c68; */
-    background-color: #A9C9FF;
-background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
+    background-image: linear-gradient(to right top, #cdba37, #bbbd2a, #a7c01e, #8ec319, #70c61c, #5bcb3a, #3fd051, #00d467, #00db8a, #00e1a8, #00e7c3, #25ebda);
+
   }
   
+.Border{
+  border: 1px solid #999;
+}
+
   .btn-primary,
   .btn-primary.disabled,
   .btn-primary:disabled {
@@ -103,7 +107,7 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
            
           
          
-            <table style="margin:none; width:100%;" class="bg-white">
+            <table style="margin:none; width:100%; background-color: #f1f1f1;">
                 <thead>
                     <tr>
                         <th class="px-4 py-2 text-left">Orders</th>
@@ -116,7 +120,7 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
                 <tbody>
                     <% orders.forEach(order=>{%>
                     <tr>
-                        <td class="border px-4 py-2">
+                        <td class="Border px-4 py-2">
                             <p style="color:green">OrderId-<%=order._id%></p>
                         </br>Order Deatils-
                             <% for(orde in order.items){%>
@@ -132,16 +136,16 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
                             <%}%> 
 
                         </td>
-                        <td class="border px-4 py-2">
+                        <td class="Border px-4 py-2">
                           <%=order.customerId.name%>
                        </td>
-                        <td class="border px-4 py-2">
+                        <td class="Border px-4 py-2">
                            <%=order.phone%>
                         </td>
-                        <td class="border px-4 py-2">
+                        <td class="Border px-4 py-2">
                       <%=order.address%>
                         </td>
-                        <td class="border px-4 py-2">
+                        <td class="Border px-4 py-2">
                            <%if(order.status==="Cancelled"){%>
                             <p style="background-color: red;" class="text-white"><%=order.status%></p>
                             <%}else{%>
@@ -154,8 +158,11 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
                             <label for="status">Change Status</label>
                             <select id="<%=JSON.stringify(order)%>" onchange="myChangeStatus(this)">
                                 <option value="<%=order.status%>"><%=order.status%></option>    
-                            <option value="Accepted">Accepted</option>
-                            <option value="Cancelled">Cancelled</option>
+                                <% if(order.status === "Accepted") {%>
+                                  <option value="Cancelled">Cancelled</option>
+                                  <%}else{%>
+                                  <option value="Accepted">Accepted</option>
+                                  <%}%>
                         </select>
                     </br>
                            

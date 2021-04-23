@@ -17,10 +17,13 @@
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
   font-family: 'Montserrat', sans-serif;
   /* background: #535c68; */
   background-color: #A9C9FF;
-background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
+  background-image: linear-gradient(to right top, #cdba37, #bbbd2a, #a7c01e, #8ec319, #70c61c, #5bcb3a, #3fd051, #00d467, #00db8a, #00e1a8, #00e7c3, #25ebda); 
 
 }
 
@@ -32,8 +35,8 @@ background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
 }
 
 .container {
-  background-color: #f9f9f9;
-  padding: 20px;
+  background-color: #e3e3e3;
+  padding:  16px;
   border-radius: 10px;
   /*border: 0.5px solid rgba(130, 130, 130, 0.25);*/
   /*box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 
@@ -128,14 +131,15 @@ h1 {
       </div>
     </nav>
     <div class="upload">
-      <div style="margin-top:50px;">
-       <img height="500px" width="500px" src="/img/upload.jpg"/>
+      <div style="margin-top:100px;">
+       <img height="350px" width="500px" src="/img/upload.jpg"/>
       </div>
       <div class="wrapper" style="display:inline-block;">
       
         <div class="container">
           <h1>Upload Your Vegetable</h1>
-          <form action="/upload" method="POST" enctype="multipart/form-data"  style="max-width:70%;" class="px-4 py-2 pb-5 mx-auto mt-1">
+          <form action="/upload" method="POST" enctype="multipart/form-data"  style="max-width:70%;" 
+            class="px-4 mx-auto mt-1" style="display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;">
         
        
             <div class="mt-3 form-group">
@@ -151,7 +155,7 @@ h1 {
                 <input name="price" type="name" class="form-control" id="price" placeholder="50">
               </div>
               
-            <div class="upload-container">
+            <div class="upload-container" style="margin-top: 8px;">
               <div class="border-container">
                 <div class="icons fa-4x">
                   <i class="fas fa-file-image" data-fa-transform="shrink-3 down-2 left-6 rotate--45"></i>
@@ -168,7 +172,7 @@ h1 {
                   <!-- <a href="#" id="file-browser">browse</a> your computer.</p> -->
               </div>
             </div>
-                 <button type="submit"> Submit </button>   
+                 <button type="submit" style="margin-top: 8px"> Submit </button>   
   
            
           </form>
