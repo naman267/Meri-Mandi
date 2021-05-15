@@ -55,7 +55,7 @@ function userController() {
             neworder
               .save()
               .then((items) => {
-                res.redirect('/user')
+                return res.send()
               })
               .catch((e) => {
                 console.log('error', e)
@@ -67,14 +67,14 @@ function userController() {
         })
     },
     async myOrder(req, res) {
-      Order.find({ customerId: req.user._id })
+      Order.find({ customerId: req.user._id },null,{ sort: { createdAt: -1 } })
         .populate('FarmerId')
         .exec((err, order) => {
           if (!err) {
             console.log('myOrder', order)
             return res.render('userOrder', { orders: order })
           } else {
-            return res.redirecr('/user')
+            return res.redirect('/user')
           }
         })
     }
